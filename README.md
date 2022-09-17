@@ -1,0 +1,2 @@
+# EasyAlias
+FreeCAD Macro EasyAlias
