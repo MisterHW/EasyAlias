@@ -155,9 +155,7 @@ def main():
             "No spreadsheet selected.\nPlease select a spreadsheet in the tree view.")
         return
     for spreadsheet in spreadsheets:
-        viewObject = spreadsheet.ViewObject
-        selectedCells = viewObject.getView().selectedCells()
-        for selectedCell in selectedCells:
+        for selectedCell in spreadsheet.ViewObject.getView().selectedCells():
             contents = spreadsheet.getContents(selectedCell)
             if contents:
                 alias = textToAlias(contents)
