@@ -58,12 +58,12 @@ CELL_ADDR_RE = re.compile(r"([A-Za-z]+)([1-9]\d*)")
 CUSTOM_ALIAS_RE = re.compile(r".*\((.*)\)")
 MAGIC_NUMBER = 64
 REPLACEMENTS = {
-  " ": "_",
-  ".": "_",
-  "ä": "ae",
-  "ö": "oe",
-  "ü": "ue",
-  "ß": "ss"
+    " ": "_",
+    ".": "_",
+    "ä": "ae",
+    "ö": "oe",
+    "ü": "ue",
+    "ß": "ss"
 }
 
 def getSpreadsheets():
