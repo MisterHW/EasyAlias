@@ -48,11 +48,12 @@ Done
 """
 
 __title__ = "EasyAlias"
-__author__ = "TheMarkster"
+__author__ = "TheMarkster and rosta"
 __url__ = "https://wiki.freecadweb.org/Macro_EasyAlias"
 __Wiki__ = "https://wiki.freecadweb.org/Macro_EasyAlias"
-__date__ = "2022.07.31" #year.month.date
+__date__ = "2023.11.06" #year.month.date
 __version__ = __date__
+__icon__ = "https://www.freecadweb.org/wiki/images/5/5e/Easy-alias-icon.png"
 
 CELL_ADDR_RE = re.compile(r"([A-Za-z]+)([1-9]\d*)")
 CUSTOM_ALIAS_RE = re.compile(r".*\((.*)\)")
@@ -66,7 +67,8 @@ REPLACEMENTS = {
     "Ä": "Ae",
     "Ö": "Oe",
     "Ü": "Ue",
-    "ß": "ss"
+    "ß": "ss",
+    "'": ""
 }
 
 def getSpreadsheets():
@@ -156,8 +158,9 @@ def main():
         return
     for spreadsheet in spreadsheets:
         for selectedCell in spreadsheet.ViewObject.getView().selectedCells():
-            contents = spreadsheet.getContents(selectedCell)
+            contents = spreadsheet.getContents(selectedCell) # get() would throw exception on empty cell
             if contents:
+                contents = spreadsheet.get(selectedCell)
                 alias = textToAlias(contents)
                 row, column = a1_to_rowcol(selectedCell)
                 nextCell = rowcol_to_a1(row, column + 1)
